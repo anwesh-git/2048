@@ -10,7 +10,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ## Multi-stage build 40+mb
 FROM alpine:latest as builder
-RUN apk update && apk add --no-cache git && git clone https://github.com/anwesh-git/2048.git /tmp/2048
+RUN apk update && apk add --no-cache git && git clone https://github.com/anwesh-git/2048.git /tmp
 FROM nginx:alpine
 COPY --from=builder /tmp/2048 /usr/share/nginx/html/
 CMD ["nginx", "-g", "daemon off;"]
@@ -20,6 +20,6 @@ CMD ["nginx", "-g", "daemon off;"]
 # 
 FROM alpine:latest
 RUN apk --update add nginx
-COPY 2048 /usr/share/nginx/html
+COPY /2048 /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
