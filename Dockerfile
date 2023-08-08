@@ -17,9 +17,8 @@ CMD ["nginx", "-g", "daemon off;"]
 
 
 
-# 
-FROM alpine:latest
-RUN apk --update add nginx
-COPY /2048 /usr/share/nginx/html
+# alpine-12mb
+FROM nginx:stable-alpine-slim
+COPY 2048 /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
